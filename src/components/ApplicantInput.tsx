@@ -1,6 +1,7 @@
 import React from 'react';
 import { Applicant } from '../types';
 
+// Define props for ApplicantInput component
 interface ApplicantInputProps {
   applicant: Applicant;
   updateApplicant: (id: string, field: keyof Applicant, value: string) => void;
@@ -12,11 +13,13 @@ const ApplicantInput: React.FC<ApplicantInputProps> = ({
   applicant, updateApplicant, removeApplicant, setPrimaryApplicant
 }) => {
 
+  // Handle changes to first name and last name inputs
   const handleNameChange = (field: keyof Applicant, value: string) => {
     const capitalized = value.charAt(0).toUpperCase() + value.slice(1);
     updateApplicant(applicant.id, field, capitalized);
   };
-
+  
+  // Handle changes to mobile number input (allow only numbers)
   const handleMobileNumberChange = (value: string) => {
     const numbersOnly = value.replace(/[^0-9]/g, '');
     updateApplicant(applicant.id, 'mobileNumber', numbersOnly);

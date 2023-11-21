@@ -5,6 +5,7 @@ import ApplicantList from "./ApplicantList";
 import { Applicant, NameCount } from "../types";
 
 const ApplicantForm: React.FC = () => {
+// State for managing applicants
   const [applicants, setApplicants] = useState<Applicant[]>([
     {
       id: uuidv4(),
@@ -15,10 +16,12 @@ const ApplicantForm: React.FC = () => {
       isPrimary: true,
     },
   ]);
+  // State for tracking submitted applicants
   const [submittedApplicants, setSubmittedApplicants] = useState<Applicant[]>(
     []
   );
 
+  // useEffect to update submitted applicants when applicants change
   useEffect(() => {
     setSubmittedApplicants(
       applicants.filter((applicant) =>
@@ -27,6 +30,7 @@ const ApplicantForm: React.FC = () => {
     );
   }, [applicants]);
 
+  // Function to add a new applicant
   const addApplicant = () => {
     setApplicants([
       ...applicants,
@@ -41,6 +45,7 @@ const ApplicantForm: React.FC = () => {
     ]);
   };
 
+  // Function to remove an applicant
   const removeApplicant = (id: string) => {
     const isPrimaryRemoved = applicants.find((applicant) => applicant.id === id)
       ?.isPrimary;
@@ -55,6 +60,7 @@ const ApplicantForm: React.FC = () => {
     setApplicants(updatedApplicants);
   };
 
+  // Function to set a primary applicant
   const setPrimaryApplicant = (id: string) => {
     setApplicants(
       applicants.map((applicant) => ({
@@ -64,6 +70,7 @@ const ApplicantForm: React.FC = () => {
     );
   };
 
+  // Function to update an applicant's field
   const updateApplicant = (
     id: string,
     field: keyof Applicant,
@@ -73,6 +80,7 @@ const ApplicantForm: React.FC = () => {
       applicant.id === id ? { ...applicant, [field]: value } : applicant
     );
 
+    // Check for duplicates in mobile number
     if (field === "mobileNumber") {
       const mobileNumberCounts = updatedApplicants.reduce(
         (acc: NameCount, applicant) => {
@@ -89,6 +97,7 @@ const ApplicantForm: React.FC = () => {
       }
     }
 
+    // Check for duplicates in email
     if (field === "email") {
       const emailCounts = updatedApplicants.reduce(
         (acc: NameCount, applicant) => {
@@ -105,6 +114,7 @@ const ApplicantForm: React.FC = () => {
       }
     }
 
+    // Check for duplicates in first and last name
     const nameCounts = updatedApplicants.reduce(
       (acc: NameCount, { firstName, lastName }) => {
         const name = `${firstName} ${lastName}`.trim();
@@ -124,6 +134,7 @@ const ApplicantForm: React.FC = () => {
     setApplicants(updatedApplicants);
   };
 
+  // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmittedApplicants(applicants);
