@@ -1,5 +1,5 @@
 ---
-title: Applicant Management System
+Applicant Management System
 ---
 
 ## Overview
@@ -29,12 +29,14 @@ This Applicant Management System is a React-based application designed to handle
    git clone [repository-url]
    cd [repository-name]
 
-2. **Install Dependencies:**:
-  ```bash
+1. **Install Dependencies**:
+
+   ```bash
    npm install
 
-2. **Run the Application:**:
-  ```bash
+2. **Run the Application**:
+
+   ```bash
    npm run dev
 
 - Access the application at http://127.0.0.1:5173/.
@@ -46,6 +48,6 @@ This Applicant Management System is a React-based application designed to handle
 - Viewing Submitted Applicants: The right-hand side displays a list of submitted applicants.
 
 ## Future Enhancements
-Integrate with a backend server and database for persistent data storage.
-Implement user authentication and authorization for secure access.
-Extend functionality to include more detailed applicant profiles.
+- Integrate with a backend server and database for persistent data storage.
+- Implement user authentication and authorization for secure access.
+- Extend functionality to include more detailed applicant profiles.
